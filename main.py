@@ -64,6 +64,10 @@ def generate_qr_code_with_logo(item_id, qr_canvas, x_position, y_position):
         # Draw the QR code image on the PDF canvas
         qr_canvas.drawInlineImage(qr_code_image, x_position, y_position, width=QR_SIZE[0], height=QR_SIZE[1])
 
+        # Draw the item ID at the bottom of the QR code
+        qr_canvas.setFont("Helvetica", 10)
+        qr_canvas.drawString(x_position + QR_SIZE[0] / 4, y_position - 10, f'Item ID: {item_id}')
+
     except Exception as e:
         print(f'An error occurred: {e}')
 
@@ -91,7 +95,7 @@ if __name__ == "__main__":
             x_position = 20 + column * (QR_SIZE[0] + 20)
             y_position = A4[1] - 40 - row * (QR_SIZE[1] + 20) - QR_SIZE[1]
 
-            generate_qr_code_with_logo(item_id, c, num_columns, x_position, y_position)
+            generate_qr_code_with_logo(item_id, c, x_position, y_position)
 
     # Generate QR codes for the last column
     for row in range(remaining_items):
