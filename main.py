@@ -16,12 +16,21 @@ OUTPUT_PDF = 'QR_Codes.pdf'
 DEFAULT_COLUMN_SIZE = 8
 
 def generate_item_code():
-    """"Generate a random 6-character code"""
+    """Generate a random 6-character alphanumeric code for items."""
     characters = string.ascii_uppercase + string.digits
     return ''.join(random.choice(characters) for _ in range(6))
 
-def generate_qr_code_with_logo(item_id, qr_canvas, num_columns, x_position, y_position):
-    """"Create a QRCode instance with the desired size"""
+def generate_qr_code_with_logo(item_id, qr_canvas, x_position, y_position):
+    """Generate a QR code with a logo and place it on the PDF canvas.
+
+    Args:
+        item_id (int): The ID of the current item.
+        qr_canvas: The ReportLab canvas for the PDF.
+        num_columns (int): The number of columns in the layout.
+        x_position (float): The x-coordinate for placing the QR code.
+        y_position (float): The y-coordinate for placing the QR code.
+    """
+
     qr_code = qrcode.QRCode(
         version=QR_VERSION,
         error_correction=qrcode.constants.ERROR_CORRECT_H
@@ -52,29 +61,29 @@ def generate_qr_code_with_logo(item_id, qr_canvas, num_columns, x_position, y_po
         # Paste the logo on the QR code image
         qr_code_image.paste(logo_resized, logo_position)
 
-        # Calculate row and column for current QR code
-        # row = (item_id - 1) // total_columns
-        # column = (item_id - 1) % total_columns
-        # x_position = 10 + column * (QR_SIZE[0] + 20)
-        # y_position = A4[1] - 40 - row * (QR_SIZE[1] + 10) - QR_SIZE[1]
-
         # Draw the QR code image on the PDF canvas
         qr_canvas.drawInlineImage(qr_code_image, x_position, y_position, width=QR_SIZE[0], height=QR_SIZE[1])
-
 
     except Exception as e:
         print(f'An error occurred: {e}')
 
+
+
 if __name__ == "__main__":
+    # Create a canvas for the PDF with portrait orientation
     c = canvas.Canvas(OUTPUT_PDF, pagesize=A4) 
-    num_items = 32  # Number of items to generate QR codes for (6 columns x 7 rows)
+
+    # Number of items to generate QR codes for
+    num_items = 32 
+
+    # Number of columns in the layout
     num_columns = DEFAULT_COLUMN_SIZE
     
-    # Calculate the number of full rows and the remaining items for the last row
+    # Calculate the number of full columns and the remaining items for the last column
     num_full_columns = num_items // num_columns
     remaining_items = num_items % num_columns
 
-
+    # Generate QR codes for full columns
     for column in range(num_full_columns):
         for row in range(num_columns):
             item_id = column * num_columns + row + 1
@@ -84,7 +93,7 @@ if __name__ == "__main__":
 
             generate_qr_code_with_logo(item_id, c, num_columns, x_position, y_position)
 
-    # Generate the last column
+    # Generate QR codes for the last column
     for row in range(remaining_items):
         item_id = num_full_columns * num_columns + row + 1
 
@@ -94,5 +103,6 @@ if __name__ == "__main__":
         generate_qr_code_with_logo(item_id, c, num_columns, x_position, y_position)
 
 
+    # Save the PDF
     c.save()
     print(f'QR codes saved in {OUTPUT_PDF}!')
