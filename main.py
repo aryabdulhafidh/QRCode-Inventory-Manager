@@ -66,7 +66,11 @@ def generate_qr_code_with_logo(item_id, qr_canvas, x_position, y_position):
 
         # Draw the item ID at the bottom of the QR code
         qr_canvas.setFont("Helvetica", 10)
-        qr_canvas.drawString(x_position + QR_SIZE[0] / 4, y_position - 10, f'Item ID: {item_id}')
+        code_text = f'{item_code}'
+        text_width = qr_canvas.stringWidth(code_text, "Helvetica", 10)
+        x_text_position = x_position + (QR_SIZE[0] - text_width) / 2
+        y_text_position = y_position - 10
+        qr_canvas.drawString(x_text_position, y_text_position, code_text)
 
     except Exception as e:
         print(f'An error occurred: {e}')
