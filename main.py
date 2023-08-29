@@ -1,11 +1,10 @@
 import qrcode
 from PIL import Image
-from reportlab.lib.pagesizes import landscape, A4
+from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 import os
 import random
 import string
-import math
 
 # Constants
 LOGO_SIZE = (80, 80)
