@@ -107,7 +107,7 @@ if __name__ == "__main__":
         x_position = 20 + num_full_columns * (QR_SIZE[0] + 20)
         y_position = A4[1] - 40 - row * (QR_SIZE[1] + 20) - QR_SIZE[1]
 
-        generate_qr_code_with_logo(item_id, c, num_columns, x_position, y_position)
+        generate_qr_code_with_logo(item_id, c, x_position, y_position)
 
 
     # Save the PDF

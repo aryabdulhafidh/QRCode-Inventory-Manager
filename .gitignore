@@ -30,3 +30,6 @@ build/
 # Miscellaneous
 .DS_Store
 Thumbs.db
+
+
+*.pdf
