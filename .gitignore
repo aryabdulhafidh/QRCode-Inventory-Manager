@@ -1,0 +1,32 @@
+# Compiled Python files
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+env/
+*.env
+.Python
+
+# Dependencies
+*.egg-info/
+dist/
+build/
+*.egg
+*.whl
+
+# Local development settings
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Editor-specific temporary files
+.vscode/
+*.swp
+*.swo
+*.pyc
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
