@@ -13,7 +13,7 @@ The QRCode Inventory Manager is a utility tool designed to generate QR codes for
 To get started with the QRCode Inventory Manager, follow these steps:
 
 - Clone the repository to your local machine.
-- Install the required dependencies using pip install -r requirements.txt.
+- Install the required dependencies using `pip install -r requirements.txt`.
 - Modify the code to integrate with your backend/database for item association.
 - Customize the QR code generation process according to your needs.
 - Run the program and generate QR codes.
@@ -31,7 +31,7 @@ Imagine your company has developed a proprietary internal software to revolution
 Contributions to the QRCode Inventory Manager project are welcome! If you have ideas, suggestions, or improvements, please feel free to open an issue or submit a pull request. Let's collaborate to make this tool even more valuable for companies looking to optimize their inventory management processes.
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the **MIT License** - see the [LICENSE](https://github.com/BotsheloRamela/QRCode-Inventory-Manager/blob/main/LICENSE) file for details.
 
 ## Acknowledgments
 This project was inspired by the need to efficiently manage inventory using QR codes. I developed it to simplify the process of tracking items and integrating them with an inventory management software.
